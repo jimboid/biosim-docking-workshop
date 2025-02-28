@@ -16,16 +16,8 @@ WORKDIR $HOME
 # Install workshop deps
 RUN conda install oddt::oddt -y
 RUN conda install conda-forge::openbabel -y
+RUN conda install bioconda::autodock-vina -y
 RUN conda install termcolor matplotlib seaborn pandas
-
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-      conda install bioconda::autodock-vina -y; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-      conda install conda-forge numpy swig boost-cpp libboost sphinx sphinx_rtd_theme -y; \
-      wget -O vina https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_1.2.6_linux_aarch64; \
-      wget -O vina_split https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_split_1.2.6_linux_aarch64; \
-      pip install vina; \
-    fi
 
 # Copy lab workspace
 COPY --chown=1000:100 default-37a8.jupyterlab-workspace /home/jovyan/.jupyter/lab/workspaces/default-37a8.jupyterlab-workspace
