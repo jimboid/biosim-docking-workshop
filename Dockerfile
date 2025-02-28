@@ -24,7 +24,7 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
       conda install conda-forge numpy swig boost-cpp libboost sphinx sphinx_rtd_theme -y; \
       wget -O vina https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_1.2.6_linux_aarch64; \
       wget -O vina_split https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_split_1.2.6_linux_aarch64; \
-      pip install vina==1.2.6; \
+      pip install vina; \
     fi
 
 # Copy lab workspace
