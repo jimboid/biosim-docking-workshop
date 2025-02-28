@@ -7,6 +7,8 @@ LABEL org.opencontainers.image.source=https://github.com/jimboid/biosim-docking-
 LABEL org.opencontainers.image.description="A container environment for the ccpbiosim workshop on docking."
 LABEL org.opencontainers.image.licenses=MIT
 
+ARG TARGETPLATFORM
+
 # Switch to jovyan user.
 USER $NB_USER
 WORKDIR $HOME
@@ -14,8 +16,15 @@ WORKDIR $HOME
 # Install workshop deps
 RUN conda install oddt::oddt -y
 RUN conda install conda-forge::openbabel -y
-RUN conda install bioconda::autodock-vina -y
 RUN conda install termcolor matplotlib seaborn pandas
+
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+      conda install bioconda::autodock-vina -y; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+      wget -O vina_1.2.6 https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_1.2.6_linux_aarch64; \
+      wget -O vina_split_1.2.6 https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_split_1.2.6_linux_aarch64; \
+      pip install numpy vina; \
+    fi
 
 # Copy lab workspace
 COPY --chown=1000:100 default-37a8.jupyterlab-workspace /home/jovyan/.jupyter/lab/workspaces/default-37a8.jupyterlab-workspace
