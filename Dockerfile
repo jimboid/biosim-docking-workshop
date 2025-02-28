@@ -21,7 +21,7 @@ RUN conda install termcolor matplotlib seaborn pandas
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
       conda install bioconda::autodock-vina -y; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-      conda install boost; \
+      conda install boost -y; \
       wget -O vina https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_1.2.6_linux_aarch64; \
       wget -O vina_split https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.6/vina_split_1.2.6_linux_aarch64; \
       pip install numpy vina==1.2.6; \
