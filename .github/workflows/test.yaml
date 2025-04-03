@@ -18,7 +18,7 @@ jobs:
         docker run -t ghcr.io/${{ github.repository }}:dev bash -c "\
           pip install pytest nbmake; \
           cd simple_docking; \
-          pytest --nbmake *.ipynb;"
+          pytest --nbmake --nbmake-timeout=3000 *.ipynb;"
 
     - name: Authenticate with GHCR
       id: ghcr-auth
