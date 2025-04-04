@@ -25,7 +25,7 @@ COPY --chown=1000:100 default-37a8.jupyterlab-workspace /home/jovyan/.jupyter/la
 # Get workshop files and move them to jovyan directory.
 RUN git clone https://github.com/CCPBioSim/docking-workflow.git && \
     mv docking-workflow/* . && \
-    rm -r chimerax_commands.cxc LICENSE README.md docking-workflow
+    rm -r chimerax_commands.cxc LICENSE README.md docking-workflow docking_with_rescoring
 
 # UNCOMMENT THIS LINE FOR REMOTE DEPLOYMENT
 COPY jupyter_notebook_config.py /etc/jupyter/
