@@ -17,7 +17,7 @@ WORKDIR $HOME
 RUN conda install oddt::oddt -y
 RUN conda install conda-forge::openbabel -y
 #RUN conda install bioconda::autodock-vina -y
-RUN conda install termcolor matplotlib seaborn pandas
+RUN conda install termcolor matplotlib seaborn pandas boost-cpp
 RUN pip install vina
 
 # Copy lab workspace
