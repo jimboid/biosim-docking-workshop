@@ -15,8 +15,7 @@ WORKDIR $HOME
 
 # Install workshop deps
 RUN conda install oddt::oddt -y
-RUN conda install bioconda::vina -y
-RUN conda install termcolor matplotlib seaborn pandas openbabel
+RUN conda install termcolor matplotlib seaborn pandas openbabel vina
 
 # Copy lab workspace
 COPY --chown=1000:100 default-37a8.jupyterlab-workspace /home/jovyan/.jupyter/lab/workspaces/default-37a8.jupyterlab-workspace
